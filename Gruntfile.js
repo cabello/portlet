@@ -23,6 +23,17 @@ module.exports = function(grunt) {
           optimize: 'uglify'
         }
       }
+    },
+    karma: {
+      options: {
+        configFile: 'test/config.js'
+      }
+      // ,
+      // ci: {
+      //   singleRun: true,
+      //   autoWatch: false,
+      //   browsers: ['Firefox']
+      // }
     }
   };
 
@@ -30,7 +41,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('default', ['jshint', 'requirejs']);
+  grunt.registerTask('ci', ['jshint', 'requirejs', 'karma:ci']);
 
 };
